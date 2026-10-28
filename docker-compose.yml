@@ -1,9 +1,24 @@
 services:
-  web:
-    build: .
+  staging:
+    image: ghcr.io/graziessantos/conversor-imagens:${STAGING_TAG:?defina STAGING_TAG}
+    container_name: conversor-staging
     ports:
-      - "${HOST_PORT:-8080}:8080"
+      - "8081:8080"
     environment:
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
-      MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-5}
+      APP_ENVIRONMENT: staging
+      APP_VERSION: ${STAGING_TAG}
+      LOG_LEVEL: INFO
+      MAX_UPLOAD_MB: "5"
+    restart: unless-stopped
+
+  production:
+    image: ghcr.io/graziessantos/conversor-imagens:${PROD_TAG:?defina PROD_TAG}
+    container_name: conversor-prod
+    ports:
+      - "8082:8080"
+    environment:
+      APP_ENVIRONMENT: production
+      APP_VERSION: ${PROD_TAG}
+      LOG_LEVEL: WARNING
+      MAX_UPLOAD_MB: "5"
     restart: unless-stopped

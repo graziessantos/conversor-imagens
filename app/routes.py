@@ -1,4 +1,5 @@
 import logging
+import os
 
 from flask import Blueprint, Response, jsonify, request
 
@@ -10,7 +11,13 @@ log = logging.getLogger(__name__)
 
 @bp.get("/health")
 def health():
-    return jsonify({"status": "ok"})
+    return jsonify(
+        {
+            "status": "ok",
+            "version": os.getenv("APP_VERSION", "local"),
+            "environment": os.getenv("APP_ENVIRONMENT", "development"),
+        }
+    )
 
 
 @bp.get("/api/formats")

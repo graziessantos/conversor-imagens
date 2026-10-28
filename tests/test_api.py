@@ -45,3 +45,10 @@ def test_convert_arquivo_grande_413():
     app.config["MAX_CONTENT_LENGTH"] = 1000
     r = enviar(app.test_client(), b"x" * 5000, "png")
     assert r.status_code == 413
+
+def test_health_mostra_versao_e_ambiente(client, monkeypatch):
+    monkeypatch.setenv("APP_VERSION", "1.0.0")
+    monkeypatch.setenv("APP_ENVIRONMENT", "staging")
+    r = client.get("/health")
+    assert r.json["version"] == "1.0.0"
+    assert r.json["environment"] == "staging"
