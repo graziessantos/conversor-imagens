@@ -30,8 +30,8 @@ def convert_image(data: bytes, target: str) -> tuple[bytes, str]:
         raise ConversionError("arquivo não é uma imagem válida") from exc
 
     # JPEG não tem transparência: converte antes de salvar
-    #if pil_format == "JPEG" and img.mode in ("RGBA", "LA", "P"):
-     #   img = img.convert("RGB")
+    if pil_format == "JPEG" and img.mode in ("RGBA", "LA", "P"):
+        img = img.convert("RGB")
 
     out = io.BytesIO()
     img.save(out, format=pil_format)
