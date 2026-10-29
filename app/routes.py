@@ -19,6 +19,17 @@ def health():
         }
     )
 
+@bp.get("/api/version")
+def version():
+    return jsonify(
+        {
+            "version": os.getenv("APP_VERSION", "local"),
+            "environment": os.getenv("APP_ENVIRONMENT", "development"),
+            "message": "Nova funcionalidade da versão 1.1",
+        }
+    )
+
+
 
 @bp.get("/api/formats")
 def formats():
