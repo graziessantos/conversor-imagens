@@ -52,3 +52,9 @@ def test_health_mostra_versao_e_ambiente(client, monkeypatch):
     r = client.get("/health")
     assert r.json["version"] == "1.0.0"
     assert r.json["environment"] == "staging"
+
+def test_api_version(client, monkeypatch):
+    monkeypatch.setenv("APP_VERSION", "1.1.0")
+    r = client.get("/api/version")
+    assert r.status_code == 200
+    assert r.json["version"] == "1.1.0"
