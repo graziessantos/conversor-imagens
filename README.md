@@ -187,7 +187,3 @@ O workflow em `.github/workflows/ci.yml` roda em *push* para `main`, em tags `v*
 - Dependências com versões fixas e auditadas
 - Limite de tamanho de upload e proteção contra *decompression bombs*
 - Scan de vulnerabilidades da imagem no pipeline
-
-## 📄 Licença
-
-Defina aqui a licença do projeto (por exemplo, MIT).
