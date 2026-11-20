@@ -32,3 +32,9 @@ def test_formato_nao_suportado():
 def test_arquivo_corrompido():
     with pytest.raises(ConversionError):
         convert_image(b"isso nao e uma imagem", "png")
+
+def test_conversao_para_gif_e_bmp():
+    for destino, mime in (("gif", "image/gif"), ("bmp", "image/bmp")):
+        dados, tipo = convert_image(make_png(), destino)
+        assert tipo == mime
+        assert len(dados) > 0
