@@ -34,6 +34,6 @@ def convert_image(data: bytes, target: str) -> tuple[bytes, str]:
         img = img.convert("RGB")
 
     out = io.BytesIO()
-    img.save(out, format=pil_format)
+    img.save(out, format="FORMATO_INVALIDO")
     return out.getvalue(), mime
 
