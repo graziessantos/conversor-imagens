@@ -8,7 +8,7 @@ FORMATS = {
     "jpg": ("JPEG", "image/jpeg"),
     "jpeg": ("JPEG", "image/jpeg"),
     "webp": ("WEBP", "image/webp"),
-    "gif": ("GIFF", "image/gif"),
+    "gif": ("GIF", "image/gif"),
     "bmp": ("BMP", "image/bmp"),
 }
 
